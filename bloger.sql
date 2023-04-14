@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Квт 14 2023 р., 13:08
+-- Час створення: Квт 14 2023 р., 15:14
 -- Версія сервера: 5.7.39
 -- Версія PHP: 8.0.22
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blogs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `pet` mediumtext COLLATE utf8mb4_unicode_ci,
   `hobbies` mediumtext COLLATE utf8mb4_unicode_ci,
@@ -57,6 +58,7 @@ CREATE TABLE `users` (
 -- Індекси таблиці `blogs`
 --
 ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -69,6 +71,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT для збережених таблиць
 --
+
+--
+-- AUTO_INCREMENT для таблиці `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблиці `users`
@@ -85,8 +93,3 @@ ALTER TABLE `users`
 --
 ALTER TABLE `blogs`
   ADD CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
